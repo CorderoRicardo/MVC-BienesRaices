@@ -28,7 +28,13 @@ class Router{
     }
 
     /** Renders a view */
-    public function render($view){
+    public function render($view, $datos = []){
+        
+        // passing every attribute to the view
+        foreach($datos as $key => $value){
+            $$key = $value;
+        }
+
         ob_start();
 
         include_once __DIR__ . "/views/$view.php";
