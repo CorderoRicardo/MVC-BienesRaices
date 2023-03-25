@@ -61,7 +61,15 @@ class PropiedadController{
             'errores' => $errores
         ]);
     }
-    public static function actualizar(){
-        echo "actualizar";
+    public static function actualizar(Router $router){
+        $propiedad = Propiedad::find($_GET['id']);
+        $vendedores = Vendedor::all();
+        $errores = Propiedad::getErrores();
+
+        $router->render('propiedades/actualizar',[
+            'propiedad' => $propiedad,
+            'vendedores' => $vendedores,
+            'errores' => $errores
+        ]);
     }        
 }
