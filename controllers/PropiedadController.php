@@ -62,7 +62,8 @@ class PropiedadController{
         ]);
     }
     public static function actualizar(Router $router){
-        $propiedad = Propiedad::find($_GET['id']);
+        $id = validateIDfromURL('/admin');
+        $propiedad = Propiedad::find($id);
         $vendedores = Vendedor::all();
         $errores = Propiedad::getErrores();
 
