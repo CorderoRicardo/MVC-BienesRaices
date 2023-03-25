@@ -11,6 +11,11 @@ class Router{
         $this->rutasGET[$url] = $fn;
     }
 
+    public function post($url, $fn){
+        $this->rutasPOST[$url] = $fn;
+    }
+
+
     /** WIP: Checks if the URL is valid and runs its callback function */
     public function comprobarRutas(){
         $urlActual = $_SERVER['PATH_INFO'] ?? '/';
@@ -18,6 +23,8 @@ class Router{
         
         if($metodo === 'GET'){
             $fn = $this->rutasGET[$urlActual] ?? null;
+        } else{    
+            $fn = $this->rutasPOST[$urlActual] ?? null;
         }
 
         if($fn){
