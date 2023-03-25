@@ -29,7 +29,7 @@ class ActiveRecord{
         $resultado = self::$db->query($query);
 
         if($resultado){
-            header('Location: /S26-BienesRaices/admin/index.php?resultado=1');
+            header('Location: /admin?resultado=1');
         }
     }
 
@@ -49,7 +49,7 @@ class ActiveRecord{
         $resultado = self::$db->query($query);
 
         if($resultado){
-            header('Location: /S26-BienesRaices/admin/index.php?resultado=2');
+            header('Location: /admin?resultado=2');
         }
     }
 
