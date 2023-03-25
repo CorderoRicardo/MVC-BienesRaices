@@ -55,3 +55,14 @@ function mostrarNotificacion($codigo){
     }
     return $mensaje;
 }
+
+/** Validates the ID from an URL and return its */
+function validateIDfromURL(string $url){
+    $id = $_GET['id'];
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+
+    if(!$id){
+        header("Location: $url");
+    }
+    return $id;        
+}
