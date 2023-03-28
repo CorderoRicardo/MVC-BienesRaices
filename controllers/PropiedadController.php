@@ -11,11 +11,13 @@ class PropiedadController{
         // The model interacts with the DB and gets the data
         $propiedades = Propiedad::all();
         $resultado = $_GET['resultado'] ?? null;
+        $vendedores = Vendedor::all();
 
         $router->render('propiedades/admin',[
             // The data from the model is send to the view component
             'propiedades' => $propiedades,
-            'resultado' => $resultado 
+            'resultado' => $resultado,
+            'vendedores' => $vendedores
         ]);
     }
     public static function crear(Router $router){
