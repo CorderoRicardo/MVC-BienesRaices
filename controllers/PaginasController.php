@@ -7,8 +7,10 @@ use Model\Vendedor;
 
 class PaginasController{
     public static function index(Router $router){
+        $propiedades = Propiedad::getRows(3);
         $router->render('paginas/index',[
-
+            "propiedades" => $propiedades,
+            "inicio" => true
         ]);
     }
     public static function nosotros(Router $router){
