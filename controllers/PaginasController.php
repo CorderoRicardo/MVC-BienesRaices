@@ -14,18 +14,19 @@ class PaginasController{
         ]);
     }
     public static function nosotros(Router $router){
-        $router->render('paginas/nosotros',[
-
-        ]);
+        $router->render('paginas/nosotros');
     }
     public static function propiedades(Router $router){
+        $propiedades = Propiedad::getRows(10);        
         $router->render('paginas/propiedades',[
-
+            'propiedades' =>$propiedades
         ]);
     }    
     public static function propiedad(Router $router){
+        $id = validateIDfromURL('/index');
+        $propiedad = Propiedad::find($id);
         $router->render('paginas/propiedad',[
-
+            'propiedad' => $propiedad
         ]);
     }    
     public static function blog(Router $router){
