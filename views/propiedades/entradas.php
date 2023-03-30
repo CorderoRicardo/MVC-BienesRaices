@@ -12,7 +12,7 @@
         <tr>
             <td> <?php echo $entrada->id; ?></td>
             <td> <?php echo $entrada->titulo ?></td>
-            <td class=" tdImage"><img src="../imagenes/<?php echo $entrada->imagen ?>" class="imagen-tabla"></td>
+            <td class=" tdImage"><img src="../imagenes/entradas/<?php echo $entrada->imagen ?>" class="imagen-tabla"></td>
             <td> <?php echo $entrada->autor ?> </td>
             <td>
                 <form method="POST" class="w-100" action="/entradas/eliminar">
