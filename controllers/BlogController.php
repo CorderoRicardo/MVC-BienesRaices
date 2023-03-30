@@ -19,7 +19,7 @@ class BlogController{
             // Agregar la imagen
             // Realiza un resize a la imagen
             if($_FILES['entrada']['tmp_name']['imagen']){
-                $image = Image::make($_FILES['entrada']['tmp_name']['imagen'])->fit(800,600);
+                $image = Image::make($_FILES['entrada']['tmp_name']['imagen'])->fit(1280,720);
                 $entrada->setImage($nombreImagen);
             }
             
@@ -44,8 +44,34 @@ class BlogController{
         ]);
     }
 
-    public static function actualizar(){
-        echo "actualizando";
+    public static function actualizar(Router $router){
+        $id = validateIDfromURL('/admin');
+        $entrada = Blog::find($id);
+        $errores = Blog::getErrores();
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $args = $_POST['entrada'];
+            $entrada->sincronizar($args);
+
+            $nombreImagen = md5( uniqid( rand(), true ) ) . '.jpg';
+
+            $errores = $entrada->validar();
+
+            if(empty($errores)){
+            // Insertar la query en la base de datos
+                if($_FILES['entrada']['tmp_name']['imagen']){
+                    $image = Image::make($_FILES['entrada']['tmp_name']['imagen'])->fit(1280,720);
+                    $entrada->setImage($nombreImagen);
+                    $image->save(CARPETA_IMAGENES .'entradas/'. $nombreImagen);    
+                }    
+                $entrada->guardar();
+            }              
+        }
+
+        $router->render('entradas/actualizar',[
+            'entrada' => $entrada,
+            'errores' => $errores
+        ]);
     }
 
     public static function eliminar(){
