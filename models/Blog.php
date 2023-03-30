@@ -25,6 +25,18 @@ class Blog extends ActiveRecord{
 
     public function validar()
     {
-        
+        if(!$this->titulo){
+            self::$errores[] = 'El Titulo es obligatorio';
+        }
+        if(!$this->autor){
+            self::$errores[] = 'El autor es obligatorio';
+        }    
+        if(strlen($this->contenido) < 150){
+            self::$errores[] = 'La contenido es obligatorio y debe tener al menos 150 caracteres';
+        }
+        if(!$this->imagen){
+            self::$errores[] = 'La imagen es obligatoria';
+        }
+        return self::getErrores();                 
     }
 }
