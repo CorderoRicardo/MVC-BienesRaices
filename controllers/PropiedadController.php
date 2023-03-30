@@ -4,6 +4,7 @@ namespace Controllers;
 use MVC\Router;
 use Model\Propiedad;
 use Model\Vendedor;
+use Model\Blog;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class PropiedadController{
@@ -12,12 +13,14 @@ class PropiedadController{
         $propiedades = Propiedad::all();
         $resultado = $_GET['resultado'] ?? null;
         $vendedores = Vendedor::all();
+        $entradas = Blog::all();
 
         $router->render('propiedades/admin',[
             // The data from the model is send to the view component
             'propiedades' => $propiedades,
             'resultado' => $resultado,
-            'vendedores' => $vendedores
+            'vendedores' => $vendedores,
+            'entradas' => $entradas
         ]);
     }
     public static function crear(Router $router){
