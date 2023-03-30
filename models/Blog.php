@@ -39,4 +39,11 @@ class Blog extends ActiveRecord{
         }
         return self::getErrores();                 
     }
+
+    public function borrarImagen(){
+        $existeArchivo = file_exists(CARPETA_IMAGENES .'entradas/'. $this->imagen);
+        if($existeArchivo){
+            unlink(CARPETA_IMAGENES .'entradas/'. $this->imagen);
+        }
+    }    
 }
