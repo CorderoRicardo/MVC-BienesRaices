@@ -17,7 +17,7 @@
             <td>
                 <form method="POST" class="w-100" action="/entradas/eliminar">
                     <input type="hidden" name="id" value="<?php echo $entrada->id; ?>">
-                    <input type="hidden" name="tipo" value="propiedad">
+                    <input type="hidden" name="tipo" value="entrada">
                     <input type="submit" class="boton-rojo" value="Eliminar">
                 </form>
                 <a href="entradas/actualizar?id=<?php echo $entrada->id ?>" class="boton-amarillo">Actualizar</a>
