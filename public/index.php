@@ -5,6 +5,7 @@ require_once __DIR__ . '/../includes/app.php';
 use MVC\Router;
 use Controllers\PropiedadController;
 use Controllers\VendedorController;
+use Controllers\BlogController;
 use Controllers\PaginasController;
 
 $router = new Router();
@@ -21,6 +22,12 @@ $router->post('/vendedores/crear',[VendedorController::class,'crear']);
 $router->get('/vendedores/actualizar',[VendedorController::class,'actualizar']);
 $router->post('/vendedores/actualizar',[VendedorController::class,'actualizar']);
 $router->post('/vendedores/eliminar',[VendedorController::class,'eliminar']);
+// CRUD for Entradas
+$router->get('/entradas/crear',[BlogController::class,'crear']);
+$router->post('/entradas/crear',[BlogController::class,'crear']);
+$router->get('/entradas/actualizar',[BlogController::class,'actualizar']);
+$router->post('/entradas/actualizar',[BlogController::class,'actualizar']);
+$router->post('/entradas/eliminar',[BlogController::class,'eliminar']);
 
 // For visitors
 $router->get('/',[PaginasController::class,'index']);
