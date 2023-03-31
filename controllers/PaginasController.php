@@ -1,16 +1,20 @@
 <?php 
 
 namespace Controllers;
+
 use MVC\Router;
 use Model\Propiedad;
 use Model\Vendedor;
+use Model\Blog;
 
 class PaginasController{
     public static function index(Router $router){
         $propiedades = Propiedad::getRows(3);
+        $entradas = Blog::getRows(2);        
         $router->render('paginas/index',[
             "propiedades" => $propiedades,
-            "inicio" => true
+            "inicio" => true,
+            "entradas" => $entradas
         ]);
     }
     public static function nosotros(Router $router){
@@ -30,10 +34,17 @@ class PaginasController{
         ]);
     }    
     public static function blog(Router $router){
-        $router->render('paginas/blog');
+        $entradas = Blog::getRows(9);
+        $router->render('paginas/blog',[
+            'entradas' => $entradas 
+        ]);
     }    
     public static function entrada(Router $router){
-        $router->render('paginas/entrada');
+        $id = validateIDfromURL('/blog');
+        $entrada = Blog::find($id);
+        $router->render('paginas/entrada',[
+            'entrada' => $entrada
+        ]);
     }
     public static function contacto(Router $router){
         $router->render('paginas/contacto',[
