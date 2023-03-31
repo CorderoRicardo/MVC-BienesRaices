@@ -2,7 +2,7 @@
     <h1>Administrador de Bienes Raices</h1>
     <a href="/propiedades/crear" class="boton boton-verde-inline">Nueva propiedad</a>
     <a href="/vendedores/crear" class="boton boton-amarillo-inline">Nuevo vendedor</a>
-    <a href="/entradas/crear" class="boton boton-rojo-inline">Nueva entrada</a>
+    <a href="/entradas/crear" class="boton boton-violeta-inline">Nueva entrada</a>
 
     <h2>Propiedades</h2>
     <?php 
