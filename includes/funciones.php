@@ -32,7 +32,7 @@ function cleanHTML($html): string{
 
 /**Validates the type of content */
 function validarTipoContenido($tipo){
-    $tipos = ["propiedad","vendedor"];
+    $tipos = ["propiedad","vendedor","entrada"];
     return in_array($tipo,$tipos);
 }
 
