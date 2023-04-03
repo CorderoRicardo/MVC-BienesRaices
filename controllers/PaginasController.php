@@ -48,6 +48,7 @@ class PaginasController{
         ]);
     }
     public static function contacto(Router $router){
+        $mensaje = null;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $respuestas = $_POST['contacto'];
@@ -73,28 +74,30 @@ class PaginasController{
             $contenido .= "<p> Tienes un nuevo mensaje</p>";
             $contenido .= "<ul>";
             $contenido .= "<li>Nombre: ".$respuestas['nombre']."</li>";
-            $contenido .= "<li>Email: ".$respuestas['email']."</li>";
-            $contenido .= "<li>Teléfono: ".$respuestas['telefono']."</li>";
             $contenido .= "<li>Mensaje: ".$respuestas['mensaje']."</li>";
             $contenido .= "<li>Vende o compra: ".$respuestas['tipo']."</li>";
             $contenido .= "<li>Precio o presupuesto: $".number_format($respuestas['precio'])."</li>";
             $contenido .= "<li>Forma de contacto: ".$respuestas['contacto']."</li>";
-            $contenido .= "<li>Fecha: ".$respuestas['fecha']."</li>";
-            $contenido .= "<li>Hora: ".$respuestas['hora']."</li>";
+            if($respuestas['contacto'] === 'telefono'){
+                $contenido .= "<li>Teléfono: ".$respuestas['telefono']."</li>";                
+                $contenido .= "<li>Fecha: ".$respuestas['fecha']."</li>";
+                $contenido .= "<li>Hora: ".$respuestas['hora']."</li>";
+            }else{
+                $contenido .= "<li>Email: ".$respuestas['email']."</li>";
+            }
             $contenido .= "</ul>";
-            
             $contenido .= "</html";
             $mail->Body = $contenido;
             $mail->AltBody = "Texto alternativo/plano";
             //enviar el email
             if($mail->send()){
-                echo "Mensaje enviado correctamente";
+                $mensaje = "Mensaje enviado correctamente";
             }else{
-                echo "El mensaje no se pudo enviar...";
+                $mensaje = "El mensaje no se pudo enviar...";
             }
         }
         $router->render('paginas/contacto',[
-
+            'mensaje' => $mensaje
         ]);
     }        
 }
