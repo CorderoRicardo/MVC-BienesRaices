@@ -15,6 +15,12 @@ function eventListeners() {
     metodoContacto.forEach((input) =>
         input.addEventListener('click', mostrarMetodosContacto)
     );
+
+    const formatoPrecio = document.querySelectorAll('.formato-precio');
+    formatoPrecio.forEach((precio) => {
+        const formato = Number(precio.textContent);
+        precio.textContent = '$' + formato.toLocaleString('en-US');
+    });
 }
 
 function navegacionResponsive() {

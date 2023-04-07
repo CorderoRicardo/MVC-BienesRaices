@@ -35,7 +35,7 @@
                     <td> <?php echo $propiedad->id; ?></td>
                     <td> <?php echo $propiedad->titulo ?></td>
                     <td class=" tdImage"><img src="../imagenes/<?php echo $propiedad->imagen ?>" class="imagen-tabla"></td>
-                    <td> <?php echo '$' . $propiedad->precio ?> </td>
+                    <td class="formato-precio"> <?php echo $propiedad->precio ?> </td>
                     <td>
                         <form method="POST" class="w-100" action="/propiedades/eliminar">
                             <input type="hidden" name="id" value="<?php echo $propiedad->id; ?>">
